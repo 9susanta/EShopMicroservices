@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Basket.API.Data;
+using FluentValidation;
 
 namespace Basket.API.Basket.DeleteBasket
 {
@@ -11,10 +12,11 @@ namespace Basket.API.Basket.DeleteBasket
             RuleFor(x => x.UserName).NotEmpty().WithMessage("UserName is Required");
         }
     }
-    public class DeleteBasketCommandHandler : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
+    public class DeleteBasketCommandHandler(IBasketRepository repository) : ICommandHandler<DeleteBasketCommand, DeleteBasketResult>
     {
         public async Task<DeleteBasketResult> Handle(DeleteBasketCommand request, CancellationToken cancellationToken)
         {
+            await repository.DeteleBasket(request.UserName, cancellationToken);
             return new DeleteBasketResult(true);
         }
     }
