@@ -10,5 +10,7 @@ global using MediatR;
 global using Marten;
 global using FluentValidation;
 global using BuildBlocks.Exceptions.Handler;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 
